@@ -1,0 +1,212 @@
+{% extends "base.html" %}
+
+{% block title %}
+    Actions
+{% endblock %}
+
+{% block content %}
+    
+    <h2>Register Inventory Actions</h2>
+    <br />
+    <form action="/action" method="post" enctype="multipart/form-data">
+        <div class="form-section">
+            <div>
+                <label for="date">Date:</label>
+                <input type="date" name="date" required>
+            </div>
+
+            <div>
+                <label for="action_type">Action type:</label>
+                <select name="action_type" required>
+                    <option value="" disabled selected>Select an action</option>
+                    <option value="delivery">Delivery</option>
+                    <option value="sales">Sale</option>
+                    <option value="consumption">Consumption</option>
+                    <option value="waste">Waste</option>
+                </select>
+            </div>
+
+            <div>
+                <label for="photo" class="custom-file-upload">Upload photo (optional):</label>
+                <input id="photo-upload" type="file" name="photo" accept="image/*">
+            </div>
+        </div>
+        <br />
+        <div id="action-rows">
+            <div class="action-row">
+                <label>Category:</label>
+                <select name="category_id[]" required>
+                    <option value="" disabled selected>Select a category</option>
+                    {% for category in categories %}
+                        <option value="{{ category.id }}">{{ category.name }}</option>
+                    {% endfor %}
+                </select>
+
+                <label>Item:</label>
+                <select name="item_id[]" required>
+                    <option value="" disabled selected>Select an item</option>
+                    {% for item in items %}
+                        <option value="{{ item.id }}">{{ item.name }}</option>
+                    {% endfor %}
+                </select>
+
+                <label>Unit:</label>
+                <select name="unit_id[]" required>
+                    <option value="" disabled selected>Select a unit</option>
+                    {% for unit in units %}
+                        <option value="{{ unit.id }}">{{ unit.name }}</option>
+                    {% endfor %}
+                </select>
+
+                <label>Quantity:</label>
+                <input type="number" name="quantity[]" step="0.01" min="0.01" required>
+
+                <label>Price:</label>
+                <input type="number" name="price[]" step="0.01" min="0.01">
+            </div>
+        </div>
+
+        <button type="button" class="btn"  onclick="addActionRow()">Add another item</button>
+        <br />
+        <br />
+        <button type="submit" class="btn btn-primary mt-2">Submit</button>
+        {% with messages = get_flashed_messages(with_categories=true) %}
+        {% for category, message in messages %}
+            {% if messages %}
+            <div class="alert alert-{{ category }} mt-2">{{ message }}</div>
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            {% endif %}
+        {% endfor %}
+        {% endwith %}
+    </form>
+
+    <script>
+    function addActionRow() {
+        const container = document.getElementById('action-rows');
+
+        const div = document.createElement('div');
+        div.classList.add('action-row');
+        div.innerHTML = `
+            <label>Category:</label>
+            <select name="category_id[]" required>
+                <option value="" disabled selected>Select a category</option>
+                {% for category in categories %}
+                    <option value="{{ category.id }}">{{ category.name }}</option>
+                {% endfor %}
+            </select>
+
+            <label>Item:</label>
+            <select name="item_id[]" required>
+                <option value="" disabled selected>Select an item</option>
+                {% for item in items %}
+                    <option value="{{ item.id }}">{{ item.name }}</option>
+                {% endfor %}
+            </select>
+
+            <label>Unit:</label>
+            <select name="unit_id[]" required>
+                <option value="" disabled selected>Select a unit</option>
+                {% for unit in units %}
+                    <option value="{{ unit.id }}">{{ unit.name }}</option>
+                {% endfor %}
+            </select>
+
+            <label>Quantity:</label>
+            <input type="number" name="quantity[]" min="0" step="1" required>
+
+            <label>Price per unit:</label>
+            <input type="number" name="price[]" min="0" step="0.01">
+        `;
+
+        container.appendChild(div);
+    }
+    </script>
+    <hr>
+
+    <h2>Action Records</h2>
+    {% if actions %}
+        <table id="actionsTable" class="display table table-striped table-bordered">
+            <thead>
+                <tr>
+                    <th>Date</th>
+                    <th>Action type</th>
+                    <th>Category</th>
+                    <th>Item</th>
+                    <th>Unit</th>
+                    <th>Quantity</th>
+                    <th>Price</th>
+                    <th>Photo</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for a in actions %}
+                <tr>
+                    <td>{{ a.date }}</td>
+                    <td>{{ a.action_type }}</td>
+                    <td>{{ a.category_name }}</td>
+                    <td>{{ a.item_name }}</td>
+                    <td>{{ a.unit_name }}</td>
+                    <td>{{ a.quantity }}</td>
+                    <td>{{ a.price }}</td>
+                    <td>
+                        {% if a.photo_path %}
+                            <a href="{{ url_for('static', filename=a.photo_path.split('static/')[1]) }}" target="_blank">View Photo</a>
+                        {% else %}
+                            No photo
+                        {% endif %}
+                    </td>
+                    <td>
+                        <form method="POST" action="/action/delete" class="inline-form">
+                            <input type="hidden" name="action_id" value="{{ a.id }}">
+                            <button type="submit" class="btn">Delete</button>
+                        </form>
+                    </td>
+
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        <script>
+        $(document).ready(function () {
+            // Clone header row for filters
+            $('#actionsTable thead tr').clone(true).appendTo('#actionsTable thead');
+
+            // Create empty dropdowns in the second row
+            $('#actionsTable thead tr:eq(1) th').each(function (i) {
+                $(this).html('<select style="width:100%"><option value="">All</option></select>');
+
+                var select = $('select', this);
+
+                // When a filter is selected, search the column
+                select.on('change', function () {
+                    var val = $.fn.dataTable.util.escapeRegex($(this).val());
+                    table.column(i).search(val ? '^' + val + '$' : '', true, false).draw();
+                });
+            });
+
+            // Initialize DataTable
+            var table = $('#actionsTable').DataTable({
+                orderCellsTop: true,
+                fixedHeader: true,
+                initComplete: function () {
+                    this.api().columns().every(function () {
+                        var column = this;
+                        var select = $('select', $('#actionsTable thead tr:eq(1) th').eq(column.index()));
+
+                        // Fill dropdown with unique values
+                        column.data().unique().sort().each(function (d) {
+                            var text = d.replace(/<[^>]*>?/gm, '');
+                            if (text && select.find("option[value='" + text + "']").length === 0) {
+                                select.append('<option value="' + text + '">' + text + '</option>');
+                            }
+                        });
+                    });
+                }
+            });
+        });
+        </script>
+    {% else %}
+        <p>No actions yet.</p>
+    {% endif %}
+{% endblock %}

@@ -1,0 +1,635 @@
+/* =========================
+   NAVIGATION BAR
+========================= */
+/* Light theme navbar */
+body.light-theme .navbar {
+    background-color: #e3f2fd; /* light blue */
+
+}
+
+body.light-theme .nav-link.active {
+    color: #0d47a1 !important;
+    font-weight: bold;
+}
+
+/* Dark theme navbar */
+body.dark-theme .navbar {
+    background-color: #072047; /* dark blue */
+}
+
+body.dark-theme .navbar .nav-link,
+body.dark-theme .navbar-brand {
+    color: #aaa !important;
+}
+
+body.dark-theme .nav-link.active {
+    color: #1f63c9 !important;
+    font-weight: bold;
+}
+
+/* =========================
+   FORMS
+========================= */
+
+
+form {
+    background-color: #f5f5f5;
+    padding: 20px;
+    border-radius: 10px;
+    max-width: 1900px;
+    margin-left: 20px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    font-family: Arial, sans-serif;
+}
+
+
+
+.form-section > div,
+.action-row {
+    display: flex;
+    gap: 2px;
+    align-items: center;
+    text-align: right;
+    margin-bottom: 10px;
+    flex-wrap: wrap;
+}
+
+.action-row label {
+    margin-right: 2px;
+}
+
+label {
+    min-width: 130px;
+    font-weight: bold;
+}
+
+input[type="date"],
+input[type="file"],
+input[type="number"],
+select {
+    padding: 5px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    flex: 1;
+}
+
+.submit-btn {
+    background-color: #add8e6; /* light blue */
+    color: #003366; /* dark blue */
+    padding: 10px 20px;
+    border: none;
+    border-radius: 8px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.submit-btn:hover {
+    background-color: #cce6f5;
+}
+
+button[type="button"] {
+    margin-top: 10px;
+    padding: 8px 15px;
+    border-radius: 5px;
+    background-color: #add8e6;
+    border: 1px solid #aaa;
+    cursor: pointer;
+}
+
+.left-aligned {
+    max-width: 1000px;
+    margin-left: 20px;
+    margin-top: 40px;
+}
+
+.alert-danger {
+    background-color: #f8d7da;
+    color: #721c24;
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 1px solid #f5c6cb;
+    border-radius: 4px;
+}
+
+.alert-success {
+    background-color: #d4edda;
+    color: #155724;
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 1px solid #c3e6cb;
+    border-radius: 4px;
+}
+
+/* =========================
+   USER MENU
+========================= */
+
+.user-menu {
+    position: relative;
+    display: inline-block;
+}
+
+/* Common styles for both themes */
+.user-initials {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    background-color: #0d47a1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+/* Light mode text color */
+body.light-theme .user-initials {
+    color: #fff;
+}
+
+/* Dark mode text color */
+body.dark-theme .user-initials {
+    color: #aaa;
+}
+
+.user-initials.big {
+    width: 60px;
+    height: 60px;
+    font-size: 2.5em;
+}
+
+/* Common styles for dropdown-content */
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+    right: 0;
+    background-color: #fff;
+    min-width: 300px;
+    box-shadow: 0px 8px 16px rgba(0,0,0,0.2);
+    padding: 10px;
+    z-index: 1;
+}
+
+/* Light mode text color .dropdown-content */
+body.light-theme .dropdown-content {
+    background-color: #fff;
+}
+
+/* Dark mode text color .dropdown-content */
+body.dark-theme .dropdown-content {
+    background-color: #121212;
+    color: #aaa;
+}
+
+/* Common styles for dropdown-content a */
+.dropdown-content a {
+    display: block;
+    padding: 8px;
+    text-decoration: none;
+}
+
+/* Light mode text color .dropdown-content a*/
+body.light-theme .dropdown-content a {
+    color: black;
+}
+
+/* Dark mode text color .dropdown-content a*/
+body.dark-theme .dropdown-content a {
+    color: #aaa;
+}
+
+
+
+.dropdown-content a:hover {
+    background-color: #f1f1f1;
+}
+
+.dropdown-header {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    margin-bottom: 10px;
+}
+
+.dropdown-header .user-info {
+    display: flex;
+    flex-direction: column;
+    line-height: 1.2;
+}
+
+.dropdown-header .user-info small {
+    color: 666;
+}
+
+.dropdown-content.show {
+    display: block;
+}
+
+/* =========================
+   THEME BASE
+========================= */
+
+/* Light Theme */
+body.light-theme {
+    background-color: #fff;
+    color: #000;
+}
+
+/* Dark Theme */
+body.dark-theme {
+    background-color: #121212;
+    color: #aaa;
+}
+
+/* =========================
+   SHARED ELEMENT COLORS
+========================= */
+
+/* Elements with same color/border rules in dark mode */
+body.dark-theme table,
+body.dark-theme form,
+body.dark-theme .form-control,
+body.dark-theme input,
+body.dark-theme select,
+body.dark-theme textarea,
+body.dark-theme .btn,
+body.dark-theme .custom-file-upload,
+body.dark-theme ul.list-group,
+body.dark-theme .form-card,
+body.dark-theme .list-card {
+    color: #aaa !important;
+    border: 1px solid #aaa !important;
+}
+
+/* =========================
+   TABLES
+========================= */
+body.light-theme table {
+    background-color: #fff;
+    color: #000;
+}
+
+body.dark-theme table {
+    background-color: #1e1e1e !important;
+}
+
+body.light-theme table th,
+body.light-theme table td {
+    background-color: #f9f9f9;
+    border-color: #ccc;
+}
+
+body.dark-theme table th,
+body.dark-theme table td {
+    background-color: #2b2b2b !important;
+    border-color: #aaa !important;
+}
+
+/* =========================
+   FORMS
+========================= */
+/* Light mode form container */
+body.light-theme form {
+    background-color: #e9ecef;
+    color: #000;
+    border: 1px solid #ccc;
+    padding: 1rem; /* optional, for better spacing */
+    border-radius: 5px; /* optional, for rounded corners */
+}
+
+/* Light mode form fields */
+body.light-theme .form-control,
+body.light-theme input,
+body.light-theme select,
+body.light-theme textarea {
+    background-color: #fff;
+    color: #000;
+    border: 1px solid #ccc;
+}
+
+/* Dark mode form container */
+body.dark-theme form {
+    background-color: #2b2b2b !important;
+}
+
+/* Dark mode form fields */
+body.dark-theme .form-control,
+body.dark-theme input,
+body.dark-theme select,
+body.dark-theme textarea {
+    background-color: #2b2b2b !important;
+    color: #aaa;
+    border: 1px solid #555;
+}
+
+/* Placeholder text */
+body.light-theme input::placeholder,
+body.light-theme textarea::placeholder {
+    color: #888;
+}
+
+body.dark-theme input::placeholder,
+body.dark-theme textarea::placeholder {
+    color: #aaa !important;
+}
+
+/* Labels */
+body.light-theme label {
+    color: #000;
+}
+
+body.dark-theme label {
+    color: #aaa !important;
+}
+
+/* =========================
+   BUTTONS
+========================= */
+
+/* Light mode — only style non-primary buttons */
+body.light-theme .btn:not(.btn-primary) {
+    background-color: #add8e6;
+    color: #000;
+    border: 1px solid #ccc;
+}
+
+body.light-theme .btn:not(.btn-primary):hover {
+    background-color: #88cce3;
+}
+
+/* Dark mode — only style non-primary buttons */
+body.dark-theme .btn:not(.btn-primary) {
+    background-color: #444 !important;
+    color: #aaa !important;
+    border: 1px solid #aaa !important;
+}
+
+body.dark-theme .btn:not(.btn-primary):hover {
+    background-color: #555 !important;
+}
+
+/* Keep Bootstrap primary button styles in light mode */
+body.light-theme .btn-primary {
+    background-color: #0d6efd;
+    border-color: #0d6efd;
+    color: #fff;
+}
+
+body.light-theme .btn-primary:hover {
+    background-color: #0b5ed7;
+    border-color: #0a58ca;
+}
+
+/* Dark mode primary button — slightly darker for contrast */
+body.dark-theme .btn-primary {
+    background-color: #444 !important;
+    color: #aaa !important;
+    border: 1px solid #aaa !important;
+}
+
+
+body.dark-theme .btn-primary:hover {
+    background-color: #555 !important;
+}
+
+/* =========================
+   FILE INPUT CUSTOM BUTTON
+========================= */
+
+
+
+body.light-theme .custom-file-upload {
+    background-color: #eee;
+    color: #000;
+    border: 1px solid #ccc;
+}
+
+body.light-theme .custom-file-upload:hover {
+    background-color: #ddd;
+}
+
+body.dark-theme .custom-file-upload {
+    background-color: #444;
+    color: #aaa;
+    border: 1px solid #aaa;
+    border-radius: 5px;
+}
+
+body.dark-theme .custom-file-upload:hover {
+    background-color: #555;
+}
+
+/* =========================
+   INVENTORY PAGE LAYOUT
+========================= */
+.inventory-container {
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+}
+
+.section {
+    display: grid;
+    grid-template-columns: 1fr 1fr; /* form left, list right */
+    gap: 20px;
+}
+
+.form-card,
+.list-card {
+    padding: 15px;
+    border-radius: 5px;
+}
+
+body.light-theme .form-card,
+body.light-theme .list-card {
+    background-color: #fff;
+    border: 1px solid #ccc;
+    color: #000;
+}
+
+body.dark-theme .form-card,
+body.dark-theme .list-card {
+    background-color: #222;
+    border: 1px solid #555;
+    color: #aaa;
+}
+
+/* Lists inside cards */
+.list-card ul {
+    list-style: none;
+    padding: 0;
+}
+
+body.light-theme .list-card li {
+    border-bottom: 1px solid #ccc;
+    color: #000;
+}
+
+body.dark-theme .list-card li {
+    border-bottom: 1px solid #555;
+    color: #aaa;
+}
+
+/* Titles in cards */
+.form-card h4,
+.list-card h4 {
+    margin-bottom: 15px;
+}
+
+/* Responsive layout */
+@media (max-width: 768px) {
+    .section {
+        grid-template-columns: 1fr; /* stack on small screens */
+    }
+}
+
+/* =========================
+   INVENTORY_SETUP PAGE BUTTONS
+========================= */
+.manage-buttons {
+    display: flex;
+    gap: 15px;
+    margin-bottom: 20px;
+}
+
+.manage-btn {
+    padding: 12px 18px;
+    border-radius: 5px;
+    text-decoration: none;
+    font-weight: bold;
+    transition: background 0.2s;
+}
+
+/* Light mode styles */
+body.light-theme .manage-btn {
+    background-color: #add8e6;
+    color: #000;
+    border: 1px solid #ccc;
+}
+
+body.light-theme .manage-btn:hover {
+    background-color: #88cce3;
+}
+
+/* Dark mode styles */
+body.dark-theme .manage-btn {
+    background-color: #444;
+    color: #aaa;
+    border: 1px solid #aaa;
+}
+
+body.dark-theme .manage-btn:hover {
+    background-color: #555;
+}
+
+/* Scroll up button */
+.scroll-top-btn {
+    width: 50px;
+    height: 50px;
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    display: none;
+    z-index: 1000;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+}
+
+/* =========================
+   CRUD BUTTONS
+========================= */
+/* Base button style for both edit & delete */
+.small-grey-btn {
+    background-color: #ccc !important;
+    color: #333 !important;
+    border: none !important;
+    padding: 2px 6px !important;
+    font-size: 0.85em !important;
+    font-weight: normal !important; /* No bold */
+    font-family: inherit !important;
+    border-radius: 3px !important;
+    cursor: pointer !important;
+    text-decoration: none !important;
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    line-height: 1 !important;
+    height: 22px !important;
+    box-sizing: border-box !important;
+    vertical-align: middle !important;
+    margin-right: 5px !important;
+}
+
+.small-grey-btn:hover {
+    background-color: #bbb !important;
+}
+
+/* Inline form (delete button) */
+.inline-form {
+    display: inline-flex !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    background: transparent !important;
+    border: 0 !important;
+    box-shadow: none !important;
+    width: auto !important;
+    vertical-align: middle !important;
+}
+
+.inline-form .form-group,
+.inline-form .form-control {
+    margin: 0 !important;
+    padding: 0 !important;
+    background: transparent !important;
+    border: none !important;
+    box-shadow: none !important;
+}
+
+/* Delete button inside inline form — identical to edit */
+.inline-form button.small-grey-btn {
+    background-color: #ccc !important;
+    color: #333 !important;
+    font-weight: normal !important;
+    font-family: inherit !important;
+    padding: 2px 6px !important;
+    font-size: 0.85em !important;
+    border-radius: 3px !important;
+    cursor: pointer !important;
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    line-height: 1 !important;
+    height: 22px !important;
+    box-sizing: border-box !important;
+    vertical-align: middle !important;
+    margin-right: 5px !important;
+}
+
+.inline-form button.small-grey-btn:hover {
+    background-color: #bbb !important;
+}
+/* =========================
+   CHANGE PASSWORD FORM
+========================= */
+
+.change-password-form {
+    width: 300px;          /* Form width */
+    margin-left: 0;        /* Align to left */
+    margin-top: 10px;      /* Small space from top */
+    padding: 15px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background-color: #f9f9f9;
+}
+
+.change-password-form div {
+    margin-bottom: 10px;
+}
+
+.change-password-form input {
+    width: 100%;
+    padding: 8px;
+    box-sizing: border-box;
+}

@@ -1,0 +1,44 @@
+{% extends "base.html" %}
+
+{% block title %}Home{% endblock %}
+
+{% block content %}
+<h2>Welcome to the Restaurant Inventory Management App</h2>
+
+<div style="display: flex; align-items: flex-start; gap: 20px;">
+    <!-- Left: Image -->
+    <div style="flex: 1;">
+        <img src="{{ url_for('static', filename='images/restaurant.png') }}" alt="Restaurant" style="max-width: 100%; height: auto;">
+    </div>
+
+    <!-- Right: Text -->
+    <div style="flex: 2;">
+        <p>
+            This application is built to help manage the inventory of a restaurant efficiently. It streamlines how ingredients and supplies are tracked, recorded, and reported.
+        </p>
+
+        <p>
+            The system is divided into three main sections:
+        </p>
+
+        <ul>
+            <li>
+                <strong>Inventory:</strong> View and manage the list of all available items and their units. You can add new items or update existing ones.
+            </li>
+            <li>
+                <strong>Actions:</strong> Log daily activities like <em>deliveries</em>, <em>sales</em>, <em>consumption</em>, or <em>waste</em>. Each record supports optional photo uploads for delivery validation.
+            </li>
+            <li>
+                <strong>Inventory Setup:</strong>  Add and organize inventory <em>items</em>, <em>categories</em> and measurement <em>units</em> for accurate tracking.
+            </li>
+            <li>
+                <strong>Reports:</strong> Visualize item usage trends over time. This helps track stock movement, optimize ordering, and reduce waste.
+            </li>
+        </ul>
+
+        <p>
+            Use the navigation menu at the top to explore each section.
+        </p>
+    </div>
+</div>
+{% endblock %}

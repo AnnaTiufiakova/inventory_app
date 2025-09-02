@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+{% block content %}
+<h2>Profile</h2>
+<p>Username: {{ current_user.username }}</p>
+<p>Email: {{ current_user.email }}</p>
+
+<h3>Change Password</h3>
+<form method="post" class="change-password-form">
+    <div>
+        <label>Current Password:</label>
+        <input type="password" name="current_password" required>
+    </div>
+    <br />
+    <div>
+        <label>New Password:</label>
+        <input type="password" name="new_password" required>
+    </div>
+    <br />
+    <div>
+        <label>Confirm New Password:</label>
+        <input type="password" name="confirm_password" required>
+    </div>
+    <br />
+    <button type="submit">Update Password</button>
+</form>
+{% endblock %}

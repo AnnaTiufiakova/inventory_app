@@ -1,0 +1,127 @@
+{% extends "base.html" %}
+
+{% block title %}Reports{% endblock %}
+
+{% block content %}
+<h2>Inventory Trends</h2>
+
+<form method="POST">
+    <label>Select Item:</label>
+    <select name="item_id" onchange="this.form.submit()">
+        {% for item in items %}
+            <option value="{{ item.id }}" {% if item.id == selected_item_id %}selected{% endif %}>
+                {{ item.name }}
+            </option>
+        {% endfor %}
+    </select>
+
+    <label style="margin-left:20px;">Start Date:</label>
+    <input type="date" name="start_date" value="{{ start_date }}">
+    
+    <label style="margin-left:10px;">End Date:</label>
+    <input type="date" name="end_date" value="{{ end_date }}">
+    
+    <button type="submit">Apply</button>
+</form>
+
+<!-- Flex container for charts -->
+<div style="display: flex; flex-wrap: wrap; gap: 20px; justify-content: center; margin-top: 20px;">
+    <div style="flex: 1 1 400px; max-width: 500px; height: 300px;">
+        <canvas id="trendsChart"></canvas>
+    </div>
+    <div style="flex: 1 1 400px; max-width: 500px; height: 300px;">
+        <canvas id="balanceChart"></canvas>
+    </div>
+</div>
+
+<!-- KPI Cards row -->
+<div style="display: flex; flex-wrap: wrap; gap: 20px; justify-content: center; margin-top: 20px;">
+    <div style="flex: 1 1 200px; border:1px solid #ddd; padding:10px; text-align:center;">
+        <h3>Total Spend</h3>
+        <p style="font-size:20px; font-weight:bold;">
+            {{ formatted_total_spend if formatted_total_spend is not none else "$0.00" }}
+        </p>
+    </div>
+    <div style="flex: 1 1 200px; border:1px solid #ddd; padding:10px; text-align:center;">
+        <h3>Latest Price per Unit</h3>
+        <p style="font-size:20px; font-weight:bold;">
+            {{ formatted_latest_price if formatted_latest_price is not none else "$0.00" }}
+        </p>
+    </div>
+    <div style="flex: 1 1 200px; border:1px solid #ddd; padding:10px; text-align:center;">
+        <h3>Total Quantity Sold/Consumed/Wasted</h3>
+        <p style="font-size:20px; font-weight:bold;">
+            {{ total_sold_consumed_wasted if total_sold_consumed_wasted is not none else 0 }}
+        </p>
+    </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script>
+const trendsCtx = document.getElementById('trendsChart').getContext('2d');
+const balanceCtx = document.getElementById('balanceChart').getContext('2d');
+
+// Chart 1: Cumulative quantity by action type
+const trendsData = {
+    labels: {{ dates|tojson }},
+    datasets: [
+        {% for atype in action_types %}
+        {
+            label: '{{ atype }}',
+            data: {{ chart_data[atype]|tojson }},
+            fill: false,
+            borderColor: 'hsl({{ loop.index0 * 90 }}, 70%, 50%)',
+            tension: 0.1
+        },
+        {% endfor %}
+    ]
+};
+
+new Chart(trendsCtx, {
+    type: 'line',
+    data: trendsData,
+    options: {
+        responsive: true,
+        maintainAspectRatio: false,
+        plugins: {
+            legend: { position: 'top' },
+            title: { display: true, text: 'Cumulative Quantity by Action Type' }
+        },
+        scales: {
+            y: { beginAtZero: true, title: { display: true, text: 'Quantity' } },
+            x: { title: { display: true, text: 'Date' } }
+        }
+    }
+});
+
+// Chart 2: Stock balance over time
+const balanceData = {
+    labels: {{ dates|tojson }},
+    datasets: [{
+        label: 'Stock Balance',
+        data: {{ balance_data|tojson }},
+        fill: true,
+        borderColor: 'hsl(200, 70%, 50%)',
+        backgroundColor: 'hsla(200, 70%, 50%, 0.2)',
+        tension: 0.1
+    }]
+};
+
+new Chart(balanceCtx, {
+    type: 'line',
+    data: balanceData,
+    options: {
+        responsive: true,
+        maintainAspectRatio: false,
+        plugins: {
+            legend: { position: 'top' },
+            title: { display: true, text: 'Stock Balance Over Time' }
+        },
+        scales: {
+            y: { beginAtZero: true, title: { display: true, text: 'Balance' } },
+            x: { title: { display: true, text: 'Date' } }
+        }
+    }
+});
+</script>
+{% endblock %}
