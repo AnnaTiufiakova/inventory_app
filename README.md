@@ -1,5 +1,4 @@
 # Restaurant Inventory Management App
-#### Video Demo:  https://youtu.be/lEdi5R01guQ
 #### Description:
 Restaurant Inventory Management App
 
