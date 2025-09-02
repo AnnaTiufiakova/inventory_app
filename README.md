@@ -20,26 +20,26 @@ The main goals of this project were:
  3. To visualize data trends through charts and KPIs so that decision-makers can quickly assess how resources are being spent and used.
  4. To implement a secure user system so that multiple users can work with the system safely, using only basic functionality such as registration, login, logout, and password management.
 
-The design prioritizes simplicity while still offering meaningful insights into the restaurant’s operations.
-Functionality
- • User Authentication:
-Users can register, log in, log out, and change their password. This ensures controlled access to inventory data.
- • Inventory Logging:
-Actions can be logged/deleted for items in the database, including:
- • Deliveries (incoming stock with price and quantity)
- • Sales (stock sold)
- • Consumption (kitchen usage outside of sales, e.g., staff meals or prep)
- • Waste (spoiled or discarded stock)
- • Flexible Data Entry:
-Data can be entered through:
- • Web forms with dropdown menus for selecting items and action types.
- • Direct SQL queries in the SQLite database for power users or administrators.
- • File Uploads:
-Bills and receipts can be uploaded and stored in the system for reference.
- • Reports and Visualizations:
-Users can filter reports by item and date range to see:
- • A cumulative quantity chart by action type.
- • A stock balance chart over time.
+The design prioritizes simplicity while still offering meaningful insights into the restaurant’s operations.<br>
+Functionality<br>
+ • User Authentication:<br>
+Users can register, log in, log out, and change their password. This ensures controlled access to inventory data.<br>
+ • Inventory Logging:<br>
+Actions can be logged/deleted for items in the database, including:<br>
+ • Deliveries (incoming stock with price and quantity)<br>
+ • Sales (stock sold)<br>
+ • Consumption (kitchen usage outside of sales, e.g., staff meals or prep)<br>
+ • Waste (spoiled or discarded stock)<br>
+ • Flexible Data Entry:<br>
+Data can be entered through:<br>
+ • Web forms with dropdown menus for selecting items and action types.<br>
+ • Direct SQL queries in the SQLite database for power users or administrators.<br>
+ • File Uploads:<br>
+Bills and receipts can be uploaded and stored in the system for reference.<br>
+ • Reports and Visualizations:<br>
+Users can filter reports by item and date range to see:<br>
+ • A cumulative quantity chart by action type.<br>
+ • A stock balance chart over time.<br>
  • KPI cards summarizing:
  1. Total spend on deliveries.
  2. Latest price per unit (calculated as price/quantity of the most recent delivery).
